@@ -1,0 +1,29 @@
+<div class="chat-header">
+  <div class="left-header">
+    <div class="chat-name">
+      <%= @room.name %>
+    </div>
+  </div>
+  <div class="right-header">
+    <div class="chat-end">
+      <%= link_to "チャットを終了する", room_path(@room), method: :delete %>
+    </div>
+  </div>
+</div>
+
+<div class="messages">
+  <%= render partial: 'message', collection: @messages %>
+</div>
+
+<%= form_with model: [@room, @message], class: 'text-form', local: true do |f| %>
+  <div class="input-form">
+    <%= f.text_field :content, class:'input-text', placeholder: 'type a message' %>
+    <label class="input-image">
+      <span class="image-file">画像</span>
+      <%= f.file_field :image, class:'image-btn' %>
+    </label>
+  </div>
+    <%= f.submit '送信', class:'send-form' %>
+<% end %>
+<%#メンターへ確認。又はフォームの入力について復習。
+https://master.tech-camp.in/v2/curriculums/4860 %>
